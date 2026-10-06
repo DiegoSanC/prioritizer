@@ -1,0 +1,116 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Reuniones que no aportan ninguna acción útil, o que aportan ruido con forma de acción. Un parser ingenuo que haga split por líneas mete basura en el inbox de triage.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 0)",
+  "_expected": "Cero acciones registradas del transcript vacío y del que dice explícitamente que no hay acciones. Del tercero, decisión de diseño del adaptador de ingesta: o se filtra el ruido en el adaptador, o entra todo y lo rechaza el triage. La spec dice que la dedup es humana; conviene decidir explícitamente si el filtrado de ruido también lo es.",
+  "_notes": [
+    "El núcleo YA rechaza registrar una acción con texto en blanco (ver test/core/registro.test.ts). Si el adaptador le pasa una línea vacía, revienta la ingesta entera salvo que la filtre antes.",
+    "No está documentado qué devuelve Fireflies cuando no encuentra acciones: ¿cadena vacía, null, o una frase en inglés? Aquí se cubren las tres posibilidades porque no se pudo verificar cuál es la real.",
+    "El tercer transcript es el que alimenta la métrica «% accionables» del criterio de calidad, que NO se ha podido medir sin datos reales."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "Dp9wSu3ZxR",
+          "title": "Café de equipo",
+          "dateString": "2026-07-30T08:15:00.000Z",
+          "date": 1785399300000,
+          "duration": 12.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "",
+            "keywords": "café",
+            "overview": "Conversación informal sin acuerdos.",
+            "meeting_type": "one_time",
+            "topics_discussed": []
+          }
+        },
+        {
+          "id": "Eq2xTv6AyU",
+          "title": "Demo interna",
+          "dateString": "2026-07-31T16:45:00.000Z",
+          "date": 1785516300000,
+          "duration": 22.0,
+          "organizer_email": "lucia.ortega@ejemplo.es",
+          "participants": ["lucia.ortega@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [{ "id": 0, "name": "Lucía Ortega" }],
+          "meeting_attendees": [
+            {
+              "displayName": "Lucía Ortega",
+              "email": "lucia.ortega@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Lucía Ortega",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "No action items were identified in this meeting.",
+            "keywords": "demo",
+            "overview": "Demostración de la pantalla de cobro.",
+            "meeting_type": "one_time",
+            "topics_discussed": ["Demo"]
+          }
+        },
+        {
+          "id": "Fr5yUw9BzI",
+          "title": "Retro de julio",
+          "dateString": "2026-08-03T10:00:00.000Z",
+          "date": 1785751200000,
+          "duration": 47.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\n\n   \n-\nN/A\n(31:12)\nSeguir así, buen trabajo todos (44:02)\nBloquear una hora el viernes para cerrar el informe de retro (45:30)\n\n**Juan Pérez**\nTBD",
+            "keywords": "retro",
+            "overview": "Retrospectiva del mes de julio.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Retrospectiva"]
+          }
+        }
+      ]
+    }
+  }
+}

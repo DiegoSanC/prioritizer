@@ -1,0 +1,16 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Vacío legítimo: la ventana consultada no tiene ninguna reunión. Ni error, ni fallo, ni sistema sin arrancar — simplemente no hubo reuniones. Es también, exactamente, lo que ve el bucle de paginación cuando ya no quedan páginas.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 100)",
+  "_expected": "Cero acciones y pasada CORRECTA. Este caso y el de 09-error-limite-de-tasa.json no se pueden confundir jamás: uno significa «no hubo reuniones» y el otro «no me he podido enterar». La spec hace esa distinción explícita en el borde MCP y aquí vale igual. Sirve además como condición de parada del bucle de `skip`.",
+  "_notes": [
+    "Contrastar con 09-error-limite-de-tasa.json (`data: null` + `errors`) y con 08-respuesta-parcial-con-errores.json (`data` y `errors` a la vez). Aquí `data.transcripts` es una lista vacía y NO hay `errors`: la diferencia entre las tres es toda la información que tiene el adaptador para saber si la pasada valió.",
+    "No hay ninguna fixture con una página llena de 50 transcripts. Es un hueco conocido: haría el fichero enorme sin enseñar nada que no enseñe ya la pareja 06/07, pero significa que la condición de parada del bucle de paginación solo se puede probar por este lado (página vacía), no por el de la página completa."
+  ],
+  "response": {
+    "data": {
+      "transcripts": []
+    }
+  }
+}

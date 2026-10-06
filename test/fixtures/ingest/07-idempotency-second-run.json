@@ -1,0 +1,116 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Segunda pasada de la ingesta sobre una ventana de fechas solapada. Pareja con 06-idempotencia-primera-pasada.json. Contiene el caso realmente incómodo: un resumen REGENERADO, mismo id de transcript y contenido distinto.",
+  "_query": "transcripts(fromDate: \"2026-08-01\", toDate: \"2026-08-10\", limit: 50, skip: 0), ejecutada un día después de la primera pasada",
+  "_expected": "Tras aplicar esta segunda pasada sobre el estado que dejó la primera, el total de acciones NO puede crecer por Oa2hDf5KiW (idéntico) y debe crecer exactamente en una por Pb5iEg8LjX (nuevo). Lo que ocurra con Nz9gCe2JhV es la decisión de diseño que el adaptador de ingesta tiene que tomar y dejar escrita.",
+  "_notes": [
+    "Nz9gCe2JhV llega con el resumen regenerado: uno de los dos ítems está reescrito, el otro desapareció y hay uno nuevo. El id del transcript es el MISMO. Con la clave de idempotencia herramienta + id de origen, la segunda pasada no aporta nada y el ítem nuevo se pierde para siempre. Con una clave más fina (id + texto normalizado) se crearía una acción duplicada de la reescrita. No hay salida buena: hay que elegir y documentarlo.",
+    "Que esto pasa de verdad está apoyado en la documentación de Fireflies: sus resúmenes se pueden regenerar, cambiar de plantilla y refinar, y también se regeneran al corregir las etiquetas de hablante. Lo que NO se ha podido verificar es con qué frecuencia ocurre en la práctica ni si la API expone alguna marca de «actualizado en».",
+    "Oa2hDf5KiW se repite byte a byte respecto de la primera pasada: es el caso de idempotencia limpio."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "Nz9gCe2JhV",
+          "title": "Planificación de sprint",
+          "dateString": "2026-08-03T10:00:00.000Z",
+          "date": 1785751200000,
+          "duration": 46.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\nCerrar el alcance del sprint con los stakeholders antes del viernes (06:20)\nAvisar a dirección del cambio de alcance (33:08)",
+            "keywords": "sprint, alcance, dirección",
+            "overview": "Planificación del sprint (resumen regenerado con otra plantilla).",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Sprint", "Alcance"]
+          }
+        },
+        {
+          "id": "Oa2hDf5KiW",
+          "title": "Revisión de incidencias",
+          "dateString": "2026-08-05T09:30:00.000Z",
+          "date": 1785922200000,
+          "duration": 27.0,
+          "organizer_email": "juan.perez@ejemplo.es",
+          "participants": ["juan.perez@ejemplo.es", "lucia.ortega@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Juan Pérez" },
+            { "id": 1, "name": "Lucía Ortega" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            },
+            {
+              "displayName": "Lucía Ortega",
+              "email": "lucia.ortega@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Lucía Ortega",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Lucía Ortega**\nEscribir el postmortem de la caída del martes (11:40)",
+            "keywords": "incidencias, postmortem",
+            "overview": "Revisión de las incidencias de la semana.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Incidencias"]
+          }
+        },
+        {
+          "id": "Pb5iEg8LjX",
+          "title": "Preparación de la consolidación",
+          "dateString": "2026-08-06T17:00:00.000Z",
+          "date": 1786035600000,
+          "duration": 19.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es"],
+          "speakers": [{ "id": 0, "name": "Marta Ruiz" }],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\nRepasar el inbox de triage antes de consolidar (04:33)",
+            "keywords": "triage, consolidación",
+            "overview": "Preparación de la próxima consolidación.",
+            "meeting_type": "one_time",
+            "topics_discussed": ["Consolidación"]
+          }
+        }
+      ]
+    }
+  }
+}

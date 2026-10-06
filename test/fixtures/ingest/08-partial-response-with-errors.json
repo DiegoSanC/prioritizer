@@ -1,0 +1,60 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Respuesta parcial de GraphQL: HTTP 200, con datos Y con errores a la vez, y un elemento de la lista puesto a null. Es la trampa clásica de GraphQL y la que un cliente escrito con `fetch` a la ligera se traga sin enterarse.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 0)",
+  "_expected": "La ingesta debe procesar lo que llegó bien y NO tratar la pasada como completa. La spec es tajante en el borde MCP: un fallo del sistema jamás se devuelve como lista vacía. El mismo criterio vale aquí: una pasada parcial no puede parecer una pasada limpia con menos reuniones.",
+  "_notes": [
+    "La forma del error (message, code, friendly, extensions.helpUrls, extensions.code, extensions.status) está tomada de la documentación de errores de Fireflies. Los códigos usados aquí, `object_not_found` y `require_elevated_privilege`, son códigos documentados literalmente por Fireflies.",
+    "Lo que NO se ha podido verificar es si Fireflies devuelve de verdad respuestas parciales en la query `transcripts` o si aborta la query entera. La forma del envoltorio sí está documentada; el escenario es una hipótesis defensiva.",
+    "Un elemento a null dentro de `transcripts` revienta cualquier bucle que haga `t.summary` sin comprobar antes."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "Qc8jFh1MkY",
+          "title": "Seguimiento de la iniciativa Checkout",
+          "dateString": "2026-08-04T13:00:00.000Z",
+          "date": 1785848400000,
+          "duration": 24.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es"],
+          "speakers": [{ "id": 0, "name": "Marta Ruiz" }],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\nActualizar el tablero de la iniciativa (07:15)",
+            "keywords": "checkout",
+            "overview": "Seguimiento semanal.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Checkout"]
+          }
+        },
+        null
+      ]
+    },
+    "errors": [
+      {
+        "message": "You do not have permission to perform this action",
+        "friendly": true,
+        "code": "require_elevated_privilege",
+        "extensions": {
+          "helpUrls": [
+            "https://docs.fireflies.ai/miscellaneous/error-codes#require_elevated_privilege"
+          ],
+          "code": "require_elevated_privilege",
+          "status": 403
+        },
+        "path": ["transcripts", 1]
+      }
+    ]
+  }
+}

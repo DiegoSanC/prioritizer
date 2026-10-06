@@ -1,0 +1,109 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Todas las formas en que la atribución de responsable se tuerce. Es el material de los alias persona↔transcript: sin alias posible, la acción tiene que entrar SIN responsable y resolverse en el triage.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 0)",
+  "_expected": "Ninguna de estas acciones debe quedar bloqueada ni descartada por no poder resolver el responsable. Todas entran como registrada; el responsable es opcional (RegisterActionInput.assignee?).",
+  "_notes": [
+    "Fireflies etiqueta a los hablantes que no logra identificar como «Speaker N» (comportamiento descrito en su base de conocimiento sobre edición de etiquetas de hablante). El nombre que aparece atribuido en action_items depende de esas etiquetas, que un humano puede corregir A POSTERIORI: es decir, el mismo ítem puede cambiar de nombre atribuido entre dos ingestas.",
+    "Un asistente puede no ser una persona: el propio bot de Fireflies aparece como asistente de la reunión.",
+    "El nombre atribuido NO trae email. Cruzarlo con meeting_attendees por nombre es heurístico y falla con homónimos, nombres parciales y personas externas."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "Bk7pQm2LrT",
+          "title": "Kickoff con el cliente Norte",
+          "dateString": "2026-07-28T15:30:00.000Z",
+          "date": 1785252600000,
+          "duration": 58.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": [
+            "marta.ruiz@ejemplo.es",
+            "j.perez@ejemplo.es",
+            "roberto.calvo@clientenorte.com"
+          ],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Speaker 2" },
+            { "id": 2, "name": "Roberto Calvo" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "J. Pérez",
+              "email": "j.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": null,
+              "location": null
+            },
+            {
+              "displayName": "Roberto Calvo",
+              "email": "roberto.calvo@clientenorte.com",
+              "phoneNumber": null,
+              "name": "Roberto Calvo",
+              "location": null
+            },
+            {
+              "displayName": "Fireflies.ai Notetaker",
+              "email": null,
+              "phoneNumber": null,
+              "name": null,
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "Enviar el acta a todos los asistentes (02:10)\n\n**Speaker 2**\nPreparar el presupuesto de la integración (14:22)\n\n**Roberto Calvo**\nConfirmar con su equipo legal la cláusula de datos (31:05)\n\n**Equipo de Plataforma**\nDimensionar el entorno de preproducción (44:18)",
+            "keywords": "cliente norte, integración, legal",
+            "overview": "Kickoff del proyecto con el cliente Norte.",
+            "meeting_type": "one_time",
+            "topics_discussed": ["Integración", "Legal"]
+          }
+        },
+        {
+          "id": "Cn4vRt8YwE",
+          "title": "Refinamiento de Plataforma",
+          "dateString": "2026-07-29T11:00:00.000Z",
+          "date": 1785322800000,
+          "duration": 31.0,
+          "organizer_email": "juan.perez@ejemplo.es",
+          "participants": ["juan.perez@ejemplo.es", "lucia.ortega@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "juan.perez@ejemplo.es" },
+            { "id": 1, "name": "Lucía" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": null,
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": null,
+              "location": null
+            },
+            {
+              "displayName": "Lucía Ortega",
+              "email": "lucia.ortega@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Lucía Ortega",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**juan.perez@ejemplo.es**\nPartir la historia de migración en dos (05:40)\n\n**Lucía**\nRevisar los criterios de aceptación del refinamiento (19:55)\n\n**Todos**\nLeer el documento de arquitectura antes del lunes (28:03)",
+            "keywords": "refinamiento, migración, arquitectura",
+            "overview": "Refinamiento de las historias de la iniciativa Plataforma.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Plataforma"]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Campos opcionales a null. En el esquema publicado de Fireflies prácticamente TODO es nullable salvo el id: summary entero, action_items, title, dateString, date, meeting_attendees.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 0)",
+  "_expected": "Las cuatro reuniones se ingieren sin caerse. SourceReference tolera meetingDate y meetingTitle nulos por diseño (src/core/types.ts), así que el linaje se puede completar siempre; de las dos primeras no sale ninguna acción, y de las dos últimas sale una de cada.",
+  "_notes": [
+    "El cuarto transcript no tiene ni dateString ni date: SourceReference.meetingDate queda a null y la acción no tiene fecha de reunión. Conviene decidir si eso se acepta o se registra como anomalía.",
+    "El esquema publicado declara `date` como Float (milisegundos desde epoch) y `dateString` como DateTime ISO 8601. Cuál de los dos es la fuente para meetingDate es una decisión del adaptador de ingesta; aquí se dan casos donde solo hay uno de los dos.",
+    "Fireflies marca `host_email` como deprecado y recomienda `organizer_email`; aquí ni siquiera está el organizer, para forzar la decisión de no depender de él.",
+    "No hay ninguna fixture con el `id` ausente, y es deliberado: el esquema lo declara `ID` no nulo, así que un transcript sin id sería un incumplimiento del contrato por parte de Fireflies y no un caso que haya que soportar. Si aun así llegara, el adaptador debe descartarlo con ruido —sin id no hay clave de idempotencia—, pero eso es una guarda defensiva, no un caso grabado."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "Gs8zVx1CaO",
+          "title": "Sesión sin resumen generado",
+          "dateString": "2026-08-04T13:00:00.000Z",
+          "date": 1785848400000,
+          "duration": 25.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es"],
+          "speakers": [{ "id": 0, "name": "Marta Ruiz" }],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            }
+          ],
+          "summary": null
+        },
+        {
+          "id": "Ht1aWy4DbP",
+          "title": "Sesión con resumen pero sin acciones detectadas",
+          "dateString": "2026-08-05T09:30:00.000Z",
+          "date": 1785922200000,
+          "duration": 18.0,
+          "organizer_email": "juan.perez@ejemplo.es",
+          "participants": ["juan.perez@ejemplo.es"],
+          "speakers": [{ "id": 0, "name": "Juan Pérez" }],
+          "meeting_attendees": null,
+          "summary": {
+            "action_items": null,
+            "keywords": null,
+            "overview": "Sesión breve de seguimiento.",
+            "meeting_type": null,
+            "topics_discussed": null
+          }
+        },
+        {
+          "id": "Iu4bXz7EcQ",
+          "title": null,
+          "dateString": "2026-08-06T17:00:00.000Z",
+          "date": 1786035600000,
+          "duration": 33.0,
+          "organizer_email": null,
+          "participants": [],
+          "speakers": [],
+          "meeting_attendees": [],
+          "summary": {
+            "action_items": "**Lucía Ortega**\nDocumentar el procedimiento de despliegue (09:12)",
+            "keywords": null,
+            "overview": null,
+            "meeting_type": null,
+            "topics_discussed": null
+          }
+        },
+        {
+          "id": "Jv7cYa0FdR",
+          "title": "Reunión sin fecha resoluble",
+          "dateString": null,
+          "date": null,
+          "duration": null,
+          "organizer_email": null,
+          "participants": null,
+          "speakers": null,
+          "meeting_attendees": null,
+          "summary": {
+            "action_items": "**Juan Pérez**\nRevisar los permisos del bucket de backups (03:44)",
+            "keywords": null,
+            "overview": null,
+            "meeting_type": null,
+            "topics_discussed": null
+          }
+        }
+      ]
+    }
+  }
+}

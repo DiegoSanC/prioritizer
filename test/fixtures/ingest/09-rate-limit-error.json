@@ -1,0 +1,27 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Fallo duro: se agotó el límite de tasa. Sin datos, solo errores.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 0)",
+  "_expected": "La pasada falla entera y se dice. Nada de terminar en silencio dejando el inbox como estaba: eso es exactamente el fallo que la spec prohíbe en el borde MCP («un error del sistema se devuelve como error explícito y nunca como lista vacía»).",
+  "_notes": [
+    "`too_many_requests` es un código documentado por Fireflies, con estado 429 y el mensaje «Too many requests. Please retry after [time] (UTC)».",
+    "Los límites publicados son por plan: 50 peticiones/día en Free, 500/día en Pro, 60/minuto en Business y Enterprise. Con paginación de 50 transcripts por página, una cuenta Free se queda sin cuota enseguida si la ingesta reintenta.",
+    "No está documentado si la respuesta 429 trae cabecera Retry-After ni el formato exacto del «[time]» del mensaje. Aquí se pone un instante ISO como hipótesis; no confiar en ese detalle sin verificarlo."
+  ],
+  "response": {
+    "data": null,
+    "errors": [
+      {
+        "message": "Too many requests. Please retry after 2026-08-07T13:00:00.000Z (UTC)",
+        "friendly": true,
+        "code": "too_many_requests",
+        "extensions": {
+          "helpUrls": ["https://docs.fireflies.ai/miscellaneous/error-codes#too_many_requests"],
+          "code": "too_many_requests",
+          "status": 429
+        }
+      }
+    ]
+  }
+}

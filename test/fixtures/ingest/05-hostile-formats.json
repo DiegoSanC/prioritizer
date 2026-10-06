@@ -1,0 +1,127 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Variaciones de formato dentro de la cadena action_items que rompen un parser ingenuo. Como el formato real NO está documentado, esta fixture existe para forzar que el parser del adaptador de ingesta sea tolerante en vez de acoplarse a una única forma.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 0)",
+  "_expected": "El parser no debe reventar con ninguna de estas cadenas. Lo razonable es que extraiga lo que pueda y deje traza de lo que no supo interpretar, en vez de fallar la ingesta entera.",
+  "_notes": [
+    "Primer transcript: finales de línea CRLF, viñetas de tres tipos distintas (guion, asterisco, numeración), negritas dentro del texto del ítem, y un ítem que ocupa dos líneas. El caso de las negritas anidadas es el que rompe un split por /\\*\\*(.+?)\\*\\*/ hecho a la ligera.",
+    "Segundo transcript: sin ninguna cabecera de nombre; los ítems van sueltos. Si el parser exige cabecera, pierde todos los ítems.",
+    "Tercer transcript: acentos, eñes, comillas tipográficas, un ítem muy largo, y un nombre con partícula («de la») que complica el cruce por nombre de los alias persona↔transcript.",
+    "NINGUNA de estas formas está confirmada como real. Son hipótesis deliberadamente diversas para que el parser no se case con una."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "Kw0dZb3GeS",
+          "title": "Comité de arquitectura",
+          "dateString": "2026-08-07T12:00:00.000Z",
+          "date": 1786104000000,
+          "duration": 61.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\r\n- Escribir el ADR de la cola de eventos (04:11)\r\n* Validar el presupuesto con **Finanzas** antes de cerrar (17:29)\r\n1. Convocar a los equipos afectados (22:03)\r\n\r\n**Juan Pérez**\r\n- Probar el nuevo runner en preproducción y, si funciona,\r\n  documentar el procedimiento de vuelta atrás (38:50)\r\n",
+            "keywords": "arquitectura, ADR, cola de eventos",
+            "overview": "Comité de arquitectura mensual.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Arquitectura"]
+          }
+        },
+        {
+          "id": "Lx3eAc6HfT",
+          "title": "Uno a uno",
+          "dateString": "2026-08-07T12:00:00.000Z",
+          "date": 1786104000000,
+          "duration": 29.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "Cerrar el plan de formación del trimestre\nCompartir el enlace del curso de accesibilidad\nAgendar la siguiente sesión para dentro de dos semanas",
+            "keywords": "formación, accesibilidad",
+            "overview": "Uno a uno de seguimiento.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Formación"]
+          }
+        },
+        {
+          "id": "My6fBd9IgU",
+          "title": "Diseño de la señal «sin priorizar»",
+          "dateString": "2026-08-07T12:00:00.000Z",
+          "date": 1786104000000,
+          "duration": 54.0,
+          "organizer_email": "lucia.ortega@ejemplo.es",
+          "participants": ["lucia.ortega@ejemplo.es", "marta.ruiz@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Lucía Ortega" },
+            { "id": 1, "name": "Álvaro de la Peña" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Lucía Ortega",
+              "email": "lucia.ortega@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Lucía Ortega",
+              "location": null
+            },
+            {
+              "displayName": "Álvaro de la Peña",
+              "email": "alvaro.delapena@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Álvaro de la Peña",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Álvaro de la Peña**\nRedactar la definición de «sin priorizar» para el glosario, contrastarla con lo que ya dice la spec, pasarla por Marta y Lucía, y dejarla enlazada desde la página publicada de solo lectura para que cualquiera de la organización pueda consultarla sin pedir permisos (08:07)\n\n**Lucía Ortega**\nMaquetar el aviso de jerarquía desactualizada (41:19)",
+            "keywords": "sin priorizar, glosario, señal",
+            "overview": "Sesión de diseño sobre la señal de acciones sin priorizar.",
+            "meeting_type": "one_time",
+            "topics_discussed": ["Señales", "Glosario"]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.sancor/
+.DS_Store
+node_modules/
+dist/
+*.sqlite
+*.sqlite-journal
+data/
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite-wal
+*.sqlite-shm
+coverage/

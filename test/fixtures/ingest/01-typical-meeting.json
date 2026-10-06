@@ -1,0 +1,65 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Reunión ya procesada, el caso feliz: summary.action_items trae varios ítems atribuidos a personas de la organización, agrupados por nombre.",
+  "_query": "transcripts(fromDate: ..., toDate: ..., limit: 50, skip: 0)",
+  "_expected": "Cuatro acciones registradas, con linaje (tool=fireflies, sourceId=ASxwZxCstx, meetingDate, meetingTitle) y con el nombre atribuido disponible para resolverlo vía los alias persona↔transcript.",
+  "_notes": [
+    "ATENCIÓN: el formato interno de la cadena action_items NO está documentado por Fireflies. El esquema solo garantiza que es un String nullable descrito como «A list of action items». La agrupación por nombre en negrita markdown que se ve aquí es una HIPÓTESIS de trabajo, coherente con lo que la base de conocimiento describe («associates them with the relevant speakers») pero no verificada contra un payload real.",
+    "Los nombres atribuidos vienen tal cual los etiqueta Fireflies como hablantes: nombre completo, sin email. El cruce con una persona del sistema es exactamente el trabajo de los alias persona↔transcript."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "ASxwZxCstx",
+          "title": "Semanal de Checkout",
+          "dateString": "2026-07-27T09:00:00.000Z",
+          "date": 1785142800000,
+          "duration": 42.5,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": [
+            "marta.ruiz@ejemplo.es",
+            "juan.perez@ejemplo.es",
+            "lucia.ortega@ejemplo.es"
+          ],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" },
+            { "id": 2, "name": "Lucía Ortega" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            },
+            {
+              "displayName": "Lucía Ortega",
+              "email": "lucia.ortega@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Lucía Ortega",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\nCerrar el contrato del endpoint de pagos con el proveedor (00:04)\nRevisar la propuesta de precios antes del jueves (12:31)\n\n**Juan Pérez**\nMigrar el job nocturno de conciliación al nuevo runner (18:02)\n\n**Lucía Ortega**\nPreparar la demo de la pantalla de cobro para la reunión de dirección (25:47)",
+            "keywords": "checkout, pagos, conciliación, demo",
+            "overview": "Repaso semanal de la iniciativa de Checkout: estado del endpoint de pagos, conciliación nocturna y preparación de la demo.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Checkout", "Conciliación", "Demo de dirección"]
+          }
+        }
+      ]
+    }
+  }
+}

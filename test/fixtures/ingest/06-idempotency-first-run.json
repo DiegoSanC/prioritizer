@@ -1,0 +1,125 @@
+{
+  "_synthetic": true,
+  "_notice": "SYNTHETIC PAYLOAD. Not a real capture of the Fireflies API. Hand-built against the schema published at docs.fireflies.ai (checked on 2026-08-12). No data comes from real meetings. Read this directory README.md before trusting it.",
+  "_case": "Primera pasada de la ingesta. Pareja con 07-idempotencia-segunda-pasada.json. Incluye además el MISMO transcript repetido dentro de la misma respuesta, que es lo que ocurre con paginación por `skip` cuando entra material nuevo entre dos páginas.",
+  "_query": "transcripts(fromDate: \"2026-08-01\", toDate: \"2026-08-10\", limit: 50, skip: 0)",
+  "_expected": "Tres acciones en total: dos del transcript Nz9gCe2JhV y una del Oa2hDf5KiW. El transcript Nz9gCe2JhV aparece dos veces en la respuesta y NO debe producir acciones por duplicado: la clave de idempotencia es herramienta + id de origen, y hay que aplicarla también dentro de una misma pasada, no solo entre pasadas.",
+  "_notes": [
+    "La spec fija la clave de idempotencia en herramienta + id de origen. Pero el id de origen que da Fireflies es del TRANSCRIPT, no del ítem: un transcript con cuatro acciones comparte un único id. Con la clave literal de la spec, o se ingiere el transcript entero o nada. Ver la nota de incógnitas: es la decisión de diseño más cara del adaptador de ingesta.",
+    "El id de transcript de Fireflies es también el meetingId de los webhooks: su documentación dice literalmente «MeetingId and TranscriptId are used interchangeably for the Fireflies.ai Platform»."
+  ],
+  "response": {
+    "data": {
+      "transcripts": [
+        {
+          "id": "Nz9gCe2JhV",
+          "title": "Planificación de sprint",
+          "dateString": "2026-08-03T10:00:00.000Z",
+          "date": 1785751200000,
+          "duration": 46.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\nCerrar el alcance del sprint con los stakeholders (06:20)\n\n**Juan Pérez**\nEstimar la historia de conciliación (24:55)",
+            "keywords": "sprint, alcance, estimación",
+            "overview": "Planificación del sprint.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Sprint"]
+          }
+        },
+        {
+          "id": "Nz9gCe2JhV",
+          "title": "Planificación de sprint",
+          "dateString": "2026-08-03T10:00:00.000Z",
+          "date": 1785751200000,
+          "duration": 46.0,
+          "organizer_email": "marta.ruiz@ejemplo.es",
+          "participants": ["marta.ruiz@ejemplo.es", "juan.perez@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Marta Ruiz" },
+            { "id": 1, "name": "Juan Pérez" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Marta Ruiz",
+              "email": "marta.ruiz@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Marta Ruiz",
+              "location": null
+            },
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Marta Ruiz**\nCerrar el alcance del sprint con los stakeholders (06:20)\n\n**Juan Pérez**\nEstimar la historia de conciliación (24:55)",
+            "keywords": "sprint, alcance, estimación",
+            "overview": "Planificación del sprint.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Sprint"]
+          }
+        },
+        {
+          "id": "Oa2hDf5KiW",
+          "title": "Revisión de incidencias",
+          "dateString": "2026-08-05T09:30:00.000Z",
+          "date": 1785922200000,
+          "duration": 27.0,
+          "organizer_email": "juan.perez@ejemplo.es",
+          "participants": ["juan.perez@ejemplo.es", "lucia.ortega@ejemplo.es"],
+          "speakers": [
+            { "id": 0, "name": "Juan Pérez" },
+            { "id": 1, "name": "Lucía Ortega" }
+          ],
+          "meeting_attendees": [
+            {
+              "displayName": "Juan Pérez",
+              "email": "juan.perez@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Juan Pérez",
+              "location": null
+            },
+            {
+              "displayName": "Lucía Ortega",
+              "email": "lucia.ortega@ejemplo.es",
+              "phoneNumber": null,
+              "name": "Lucía Ortega",
+              "location": null
+            }
+          ],
+          "summary": {
+            "action_items": "**Lucía Ortega**\nEscribir el postmortem de la caída del martes (11:40)",
+            "keywords": "incidencias, postmortem",
+            "overview": "Revisión de las incidencias de la semana.",
+            "meeting_type": "recurring",
+            "topics_discussed": ["Incidencias"]
+          }
+        }
+      ]
+    }
+  }
+}
